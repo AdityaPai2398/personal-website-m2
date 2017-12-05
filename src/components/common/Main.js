@@ -1,17 +1,24 @@
 /* eslint-disable react/no-children-prop */
 import React from 'react';
-import {Route/*, Switch*/} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
+// import {Switch} from 'react-router-dom';
 import HomePage from '../home/HomePage';
 import AboutPage from '../about/AboutPage';
 import ProjectsPage from '../projects/ProjectsPage';
 import PropTypes from 'prop-types';
-import PageAnimationWrapper from './PageAnimationWrapper';
+// import PageAnimationWrapper from './PageAnimationWrapper';
 import NotFoundPage from './NotFoundPage.js';
 
 const Main = (props) => {
   return(
   <main className={props.isHome?"home":""}>
-        <Route exact path="/" children={({ match, ...rest }) => (
+        <Switch>
+            <Route exact path="/" render={(rest) => <HomePage setHome={props.setHome} unsetHome={props.unsetHome} {...rest}/>}/>
+            <Route exact path="/about" component={AboutPage}/>
+            <Route path="/projects" component={ProjectsPage}/>
+            <Route component={NotFoundPage}/>
+        </Switch>
+        {/* <Route exact path="/" children={({ match, ...rest }) => (
           <PageAnimationWrapper mounted={match} home={true} page="Home">
             <HomePage setHome={props.setHome} unsetHome={props.unsetHome} {...rest}/>
           </PageAnimationWrapper>
@@ -30,7 +37,7 @@ const Main = (props) => {
           <PageAnimationWrapper mounted={match} home={false} page="Error 404 (Not Found!)">
             <NotFoundPage {...rest}/>
           </PageAnimationWrapper>
-        )}/>
+        )}/> */}
   </main>
 )};
 
