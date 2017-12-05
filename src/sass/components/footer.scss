@@ -4,13 +4,16 @@
 main {
   &.home {
     height: 100%;
+    div {
+      height: 100%;
+    }
   }
   flex: 1;
 }
 
 // Footer styling
 footer {
-  transition: color $page-transition-time ease;
+  transition: color $page-in-time ease;
   p {
     text-align: center;
   }

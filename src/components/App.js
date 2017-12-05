@@ -11,11 +11,13 @@ class App extends React.Component {
 
   setHome() {
     this.setState((prevState) => {
+      // console.log("setHome()") // eslint-disable-line no-console
       return Object.assign({}, prevState, {home: true});
     });
   }
   unsetHome() {
     this.setState((prevState) => {
+      // console.log("unsetHome()") // eslint-disable-line no-console
       return Object.assign({}, prevState, {home: false});
     });
   }

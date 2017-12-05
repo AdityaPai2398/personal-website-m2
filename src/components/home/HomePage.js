@@ -21,14 +21,14 @@ class HomePage extends React.Component {
     );
   }
 
-  componentWillUnmount() {
-    this.props.unsetHome();
-  }
+  // componentWillUnmount() {
+  //   this.props.unsetHome();
+  // }
 }
 
 HomePage.propTypes = {
   setHome: PropTypes.func.isRequired,
-  unsetHome: PropTypes.func.isRequired
+  // unsetHome: PropTypes.func.isRequired
 };
 
 export default HomePage;

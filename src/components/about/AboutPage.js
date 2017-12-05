@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const AboutPage = () => {
-  return (
+class AboutPage extends React.Component {
+  render() {
+    return (
     <div>
     <section className="container-fluid" id="aboutHeader">
       <div className="container">
@@ -46,7 +48,17 @@ const AboutPage = () => {
       </div>
     </section>
     </div>
-  )
+    )
+  }
+
+  componentWillMount() {
+    this.props.unsetHome();
+  }
 }
+
+AboutPage.propTypes = {
+  // setHome: PropTypes.func.isRequired,
+  unsetHome: PropTypes.func.isRequired
+};
 
 export default AboutPage;

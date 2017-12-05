@@ -1,18 +1,38 @@
 // Classes for PageWrapper
 
-// basic page
-.page-wrapper {
-  will-change: opacity;
-  transition: opacity $page-transition-time ease;
+// // basic page
+// .page-wrapper {
+//   will-change: opacity;
+//   transition: opacity $page-transition-time ease;
+// }
+
+// // not visible page
+// .page-0 {
+//   opacity: 0;
+//   z-index: 1;
+// }
+
+// // visible page
+// .page-1 {
+//   opacity: 1;
+// }
+
+
+// fade classes for react-transition-group
+.fade-enter {
+  opacity: 0.01;
 }
 
-// not visible page
-.page-0 {
-  opacity: 0;
-  z-index: 1;
-}
-
-// visible page
-.page-1 {
+.fade-enter.fade-enter-active {
   opacity: 1;
+  transition: opacity $page-in-time ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit.fade-exit-active {
+  opacity: 0.01;
+  transition: opacity $page-out-time ease-in;
 }

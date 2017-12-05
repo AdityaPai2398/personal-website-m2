@@ -10,9 +10,11 @@ import ProjMoveOver from './project-pages/ProjMoveOver';
 import ProjCLHSOrch from './project-pages/ProjCLHSOrch';
 import ProjPolymap from './project-pages/ProjPolymap';
 import ProjPersonalWebsite from './project-pages/ProjPersonalWebsite';
+import PropTypes from 'prop-types';
 
-const ProjectsPage = () => {
-  return (
+class ProjectsPage extends React.Component {
+  render() {
+    return (
     <div>
     <section className="container-fluid" id="projectsHeader">
       <div className="container">
@@ -71,7 +73,18 @@ const ProjectsPage = () => {
       )}/>
     </section>
     </div>
-  )
+    )
+  }
+
+  componentWillMount() {
+    this.props.unsetHome();
+  }
 }
+
+ProjectsPage.propTypes = {
+  // setHome: PropTypes.func.isRequired,
+  unsetHome: PropTypes.func.isRequired
+};
+
 
 export default ProjectsPage;
