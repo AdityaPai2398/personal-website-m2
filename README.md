@@ -49,3 +49,23 @@ Personal Website, mark 2
   - [ ] Learn how to make svg assets (personal logo, etc.)
   - [ ] Update page transitions to TransitionGroup so that I can make a 404 Page
   - [ ] Cubic bezier custom transition functions
+
+- [ ] Blog
+ - Useful Links:
+  - https://daveceddia.com/ajax-requests-in-react/
+  - https://daveceddia.com/do-i-need-nodejs-backend-for-react-angular/
+  - https://github.com/BTMPL/react-ajax-demo/blob/master/src/index.js
+  - https://github.com/github/fetch
+  - https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+ - Ideas:
+  - have all the posts in a components folder, then import the entire folder and just cycle what is showing (https://stackoverflow.com/questions/36677739/react-dynamic-import-jsx(
+   - Cons: This still requires statically importing all the posts when the blog page loads = not good
+  - We need to have the blog be able to hit some server and retrieve only those posts it needs
+   - Sol: Use a database that can serve single data files for each blog post (numbered)
+     - Alt: Use a set of JSON files taht we pull in as needed
+     - https://stackoverflow.com/questions/39066972/how-to-load-ajax-in-react
+     - https://daveceddia.com/ajax-requests-in-react/
+   - FINAL SOL: Store each post in a numbered json file tha has the post title, post date/time, post author, (post tags add later), post content
+    - have two types of requests
+     - main blog page: will just pull down descriptions and provide links
+     - Route /blog/:id will be a different component that loads post with id 'id' (https://github.com/BTMPL/react-ajax-demo/blob/master/src/Post.js)
