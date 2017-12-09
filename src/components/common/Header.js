@@ -20,7 +20,8 @@ const Header = (props) => (
             <NavLink to="/projects" activeClassName="active" onClick={props.toggleMenu}>PROJECTS</NavLink>
           </div>
           <div className="navbar-item">
-            <a href="http://blog.rahulyesantharao.com/" target="_blank" rel="noopener noreferrer">BLOG</a>
+            {/* <a href="http://blog.rahulyesantharao.com/" target="_blank" rel="noopener noreferrer">BLOG</a> */}
+            <NavLink exact to="/blog" activeClassName="active" onClick={props.toggleMenu}>BLOG</NavLink>
           </div>
       </div>
       <div className="navbar-left">
@@ -43,7 +44,8 @@ const Header = (props) => (
             <NavLink to="/projects" activeClassName="active">PROJECTS</NavLink>
           </div>
           <div className="navbar-item">
-            <a href="http://blog.rahulyesantharao.com/" target="_blank" rel="noopener noreferrer">BLOG</a>
+            {/* <a href="http://blog.rahulyesantharao.com/" target="_blank" rel="noopener noreferrer">BLOG</a> */}
+            <NavLink exact to="/blog" activeClassName="active" onClick={props.toggleMenu}>BLOG</NavLink>
           </div>
       </div>
       {/* <div className="navbar-right"> */}
