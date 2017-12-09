@@ -2,3 +2,5 @@
 import React from 'react';
 import render from 'react-dom';
 import {BrowserRouter, Link, NavLink, Route} from 'react-router-dom';
+import 'whatwg-fetch';
+import Promise from 'promise-polyfill';
