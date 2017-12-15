@@ -6,13 +6,13 @@ class BlogPage extends React.Component {
   constructor(props) {
     super(props);
     this.pageSize = 5;
-    this.state = {curPage: 0, posts: []};
+    this.state = {curPage: -1, posts: []};
   }
 
   getPost(postNum) {
     // return promise for new post
-    const baseUrl = 'https://jsonplaceholder.typicode.com/posts/'
-    return fetch(baseUrl + postNum)
+    const baseUrl = `http://echo.jsontest.com/id/${postNum}/title/Post_${postNum}/body/This is test text ggggggggggggggggggggggggggggggggggggggggggggggggggggggg GGGGGGGGGGGGGGGGGGGGGGGGGGG`;
+    return fetch(baseUrl)
       .then(response => response.json())
       .then(json => {
         // console.log('parsed json', json); // eslint-disable-line no-console
@@ -25,14 +25,14 @@ class BlogPage extends React.Component {
   movePage(amount) {
     const newPage = this.state.curPage + amount;
     var promises = [];
-    for(let post = this.pageSize*newPage+1; post<this.pageSize*(newPage+1); post++) {
+    for(let post = this.pageSize*newPage; post<this.pageSize*(newPage+1); post++) {
       promises.push(this.getPost(post));
     }
     Promise.all(promises).then(newPosts => {
       if(newPosts.length>0) {
         console.log('got pages: ', newPosts); //eslint-disable-line no-console
         this.setState((prevState)=> (
-          Object.assign({}, prevState, {posts:newPosts})
+          Object.assign({}, prevState, {curPage:newPage, posts:newPosts})
         ));
       }
     }).catch(reason => {
@@ -42,14 +42,17 @@ class BlogPage extends React.Component {
 
   componentDidMount() {
     console.log('Blog mounted'); // eslint-disable-line no-console
-    this.movePage(0);
+    this.movePage(1);
   }
   componentWillReceiveProps() {
     console.log('Blog receiveProps'); // eslint-disable-line no-console
     // this.movePage(0);
-    console.log("State: ", this.state.posts); // eslint-disable-line no-console
+    // console.log("State: ", this.state.posts); // eslint-disable-line no-console
   }
-
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log(`${this.state.curPage} vs ${nextState.curPage}`); // eslint-disable-line no-console
+    return (this.state.curPage != nextState.curPage);
+  }
   render() {
     return (
       <div>
@@ -66,9 +69,17 @@ class BlogPage extends React.Component {
         <div className="columns is-centered">
           <div className="column is-12-mobile is-8-tablet is-8-desktop">
             {this.state.posts.map((el) =>{
-              console.log("Post!"); // eslint-disable-line no-console
+              console.log(`Post! ${this.state.curPage}`); // eslint-disable-line no-console
               return (<BlogPreview title={el.title} content={el.content} key={el.id}/>);
             })}
+          </div>
+        </div>
+      </section>
+      <section className="container top-pad">
+        <div className="columns is-centered">
+          <div className="column is-12-mobile is-8-tablet is-8-desktop is-flex text">
+            <p>&#8592; See Newer Posts</p>
+            <p className="is-right">See Older Posts &#8594;</p>
           </div>
         </div>
       </section>
